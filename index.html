@@ -2,13 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Water Drop Challenge</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="gameContainer">
-    <header id="header"><h1>💧 Water Drop Challenge 💧</h1></header>
+    <header id="header">
+      <img
+        src="https://www.charitywater.org/assets/logos/cw-primary-logo.png"
+        alt="charity: water"
+        height="40"
+      />
+      <h1>💧 Water Drop Challenge 💧</h1>
+    </header>
 
     <div id="scoreboard">
       <div>Score: <span id="score">0</span></div>
@@ -18,10 +25,11 @@
     <div id="gameArea">
       <div id="droplet"></div>
       <div id="village">🏡</div>
+      <div id="cloud">☁️</div>
 
       <div id="gameOver">
-        Game Over!<br>
-        Final Score: <span id="finalScore"></span><br>
+        Game Over!<br />
+        Final Score: <span id="finalScore"></span><br />
         <button onclick="location.reload()">Play Again</button>
       </div>
     </div>

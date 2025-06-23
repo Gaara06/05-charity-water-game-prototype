@@ -1,3 +1,4 @@
+/* Base layout */
 body {
   margin: 0;
   padding: 0;
@@ -15,8 +16,8 @@ body {
 #header {
   text-align: center;
   padding: 10px;
-  background: #0077b6;
-  color: white;
+  background: #ffc600; /* charity: water yellow */
+  color: #000;
 }
 
 #scoreboard {
@@ -30,11 +31,12 @@ body {
 #gameArea {
   position: relative;
   width: 100%;
-  height: calc(100vh - 170px); /* header + scoreboard + button height */
+  height: calc(100vh - 170px); /* header + scoreboard + button */
   background: #90e0ef;
   overflow: hidden;
 }
 
+/* Game objects */
 #droplet {
   position: absolute;
   top: 20px;
@@ -47,26 +49,37 @@ body {
   display: none;
 }
 
-#village {
+#village,
+#cloud {
   position: absolute;
   bottom: 0;
   width: 60px;
   height: 40px;
-  background: #ffb703;
   border-radius: 10px;
   text-align: center;
   line-height: 40px;
-  color: white;
   font-weight: bold;
 }
 
+#village {
+  background: #ffb703;
+  color: #fff;
+}
+
+#cloud {
+  bottom: 100px;      /* height above village */
+  color: #666;
+  font-size: 32px;
+}
+
+/* Controls & overlays */
 #dropButton {
   display: block;
   margin: 10px auto;
   padding: 10px 20px;
   font-size: 16px;
   background: #0077b6;
-  color: white;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -78,10 +91,27 @@ body {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
+  background: #fff;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
   font-size: 24px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  #gameArea {
+    height: 60vh;
+  }
+  #village,
+  #cloud {
+    width: 50px;
+    height: 30px;
+    font-size: 14px;
+  }
+  #dropButton {
+    width: 90%;
+    font-size: 14px;
+  }
 }

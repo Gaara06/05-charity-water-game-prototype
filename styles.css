@@ -48,3 +48,12 @@ footer {
 footer a {
   color: #80deea;
 }
+
+.bomb {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #d32f2f;
+  border-radius: 50%;
+  cursor: pointer;
+}

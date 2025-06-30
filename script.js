@@ -1,51 +1,70 @@
 let score = 0;
 let dropInterval;
-let difficultySettings = {
-  easy: 1500,
-  normal: 1000,
-  hard: 600
-};
+let gameTimer;
+let timeLeft = 30; // 30 seconds for the game
 
 function startGame() {
   clearInterval(dropInterval);
+  clearInterval(gameTimer);
   score = 0;
+  timeLeft = 30;
   document.getElementById('milestone').innerText = '';
   document.getElementById('gameArea').innerHTML = '';
-  
+
   const difficulty = document.getElementById('difficulty').value;
   const interval = difficultySettings[difficulty];
 
   dropInterval = setInterval(() => {
-    createDrop();
+    createElement(); // Could create a drop or bomb
   }, interval);
+
+  gameTimer = setInterval(() => {
+    timeLeft--;
+    if (timeLeft <= 0) {
+      endGame(`Time's up! Your score: ${score}`);
+    }
+  }, 1000);
 }
 
-function createDrop() {
+function createElement() {
   const gameArea = document.getElementById('gameArea');
-  const drop = document.createElement('div');
-  drop.className = 'water-drop';
-  drop.style.top = Math.random() * (gameArea.clientHeight - 30) + 'px';
-  drop.style.left = Math.random() * (gameArea.clientWidth - 30) + 'px';
-  
-  drop.onclick = () => {
-    gameArea.removeChild(drop);
-    score++;
-    playSound();
-    checkMilestone();
+  const isBomb = Math.random() < 0.2; // 20% chance it’s a bomb
+
+  const el = document.createElement('div');
+  el.className = isBomb ? 'bomb' : 'water-drop';
+  el.style.top = Math.random() * (gameArea.clientHeight - 30) + 'px';
+  el.style.left = Math.random() * (gameArea.clientWidth - 30) + 'px';
+
+  el.onclick = () => {
+    if (isBomb) {
+      endGame("💥 You hit a bomb! Game over!");
+    } else {
+      gameArea.removeChild(el);
+      score++;
+      playSound();
+      checkMilestone();
+    }
   };
 
-  gameArea.appendChild(drop);
+  gameArea.appendChild(el);
 
-  // Remove drop after a while if not clicked
+  // Remove element after a while if not clicked
   setTimeout(() => {
-    if (gameArea.contains(drop)) {
-      gameArea.removeChild(drop);
+    if (gameArea.contains(el)) {
+      gameArea.removeChild(el);
     }
   }, 3000);
 }
 
+function endGame(message) {
+  clearInterval(dropInterval);
+  clearInterval(gameTimer);
+  document.getElementById('milestone').innerText = message;
+  document.getElementById('gameArea').innerHTML = '';
+}
+
 function playSound() {
-  const audio = new Audio('https://freesound.org/data/previews/66/66717_931655-lq.mp3'); // Example sound
+  const audio = new Audio('https://freesound.org/data/previews/66/66717_931655-lq.mp3'); // Replace with your own sound
   audio.play();
 }
 

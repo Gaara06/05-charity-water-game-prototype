@@ -3,39 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Water Drop Challenge</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Charity: Water Game</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="gameContainer">
-    <header id="header">
-      <img
-        src="https://www.charitywater.org/assets/logos/cw-primary-logo.png"
-        alt="charity: water"
-        height="40"
-      />
-      <h1>💧 Water Drop Challenge 💧</h1>
-    </header>
+  <h1>Charity: Water Drop Quest</h1>
 
-    <div id="scoreboard">
-      <div>Score: <span id="score">0</span></div>
-      <div>Lives: <span id="lives">3</span></div>
-    </div>
-
-    <div id="gameArea">
-      <div id="droplet"></div>
-      <div id="village">🏡</div>
-      <div id="cloud">☁️</div>
-
-      <div id="gameOver">
-        Game Over!<br />
-        Final Score: <span id="finalScore"></span><br />
-        <button onclick="location.reload()">Play Again</button>
-      </div>
-    </div>
-
-    <button id="dropButton">Drop Water</button>
+  <div id="controls">
+    <label for="difficulty">Difficulty:</label>
+    <select id="difficulty">
+      <option value="easy">Easy</option>
+      <option value="normal">Normal</option>
+      <option value="hard">Hard</option>
+    </select>
+    <button onclick="startGame()">Start Game</button>
   </div>
+
+  <div id="gameArea"></div>
+
+  <div id="milestone"></div>
+
+  <footer>
+    <p>Learn more or donate at <a href="https://www.charitywater.org" target="_blank">charity: water’s website</a></p>
+  </footer>
 
   <script src="script.js"></script>
 </body>

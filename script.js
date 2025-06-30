@@ -1,7 +1,13 @@
 let score = 0;
 let dropInterval;
 let gameTimer;
-let timeLeft = 30; // 30 seconds for the game
+let timeLeft = 30; // 30 seconds
+
+let difficultySettings = {
+  easy: 1500,
+  normal: 1000,
+  hard: 600
+};
 
 function startGame() {
   clearInterval(dropInterval);
@@ -15,20 +21,20 @@ function startGame() {
   const interval = difficultySettings[difficulty];
 
   dropInterval = setInterval(() => {
-    createElement(); // Could create a drop or bomb
+    createElement();
   }, interval);
 
   gameTimer = setInterval(() => {
     timeLeft--;
     if (timeLeft <= 0) {
-      endGame(`Time's up! Your score: ${score}`);
+      endGame(`⏰ Time's up! Your score: ${score}`);
     }
   }, 1000);
 }
 
 function createElement() {
   const gameArea = document.getElementById('gameArea');
-  const isBomb = Math.random() < 0.2; // 20% chance it’s a bomb
+  const isBomb = Math.random() < 0.3; // increase chance to 30% for testing
 
   const el = document.createElement('div');
   el.className = isBomb ? 'bomb' : 'water-drop';
@@ -48,7 +54,6 @@ function createElement() {
 
   gameArea.appendChild(el);
 
-  // Remove element after a while if not clicked
   setTimeout(() => {
     if (gameArea.contains(el)) {
       gameArea.removeChild(el);
@@ -64,7 +69,7 @@ function endGame(message) {
 }
 
 function playSound() {
-  const audio = new Audio('https://freesound.org/data/previews/66/66717_931655-lq.mp3'); // Replace with your own sound
+  const audio = new Audio('https://freesound.org/data/previews/66/66717_931655-lq.mp3');
   audio.play();
 }
 

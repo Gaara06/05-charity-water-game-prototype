@@ -34,6 +34,16 @@ h1 {
   cursor: pointer;
 }
 
+.bomb {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #d32f2f;
+  border-radius: 50%;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
 #milestone {
   font-weight: bold;
   color: #004d40;
@@ -47,13 +57,4 @@ footer {
 }
 footer a {
   color: #80deea;
-}
-
-.bomb {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background-color: #d32f2f;
-  border-radius: 50%;
-  cursor: pointer;
 }
